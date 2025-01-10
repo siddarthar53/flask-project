@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<!-- Display flash messages at the top -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flashed-messages">
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}" onclick="this.style.display='none'">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+    <h1>Welcome to the Home Page</h1>
+    
+    <!-- Your content here -->
+
+    <!-- Logout Button -->
+    <form action="{{ url_for('auth.logout') }}" method="get">
+        <button type="submit">Logout</button>
+    </form>
+
+</body>
+</html>
